@@ -5,7 +5,7 @@
 
 #include "MQTT_errors.h"
 #include "MQTT_message.h"
-
+#include "MQTT_serialiser.h"
 #include "MQTT_parser.h"
 
 #define READ_STRING(into) { \
@@ -358,6 +358,55 @@ mqtt_parser_rc_t mqtt_parser_execute(mqtt_parser_t* parser, mqtt_message_t* mess
   } while (1);
 }
 
+/***************************************************************************
+              Test du protocole MQTT.
+    Entree : packet 12bits et n nombre de repetition
+
+/***************************************************************************/
+void MQTT_test(const CLS1_StdIOType *io) {
+
+mqtt_parser_t parser;
+mqtt_serialiser_t serialiser;
+mqtt_message_t message;
+
+uint8_t data[] = {
+    // type 1
+    0x10,
+    // length 94
+    0x5e,
+    // protocol name
+    0x00, 0x06,
+    0x4d, 0x51, 0x49, 0x73, 0x64, 0x70,
+    // protocol version
+    0x03,
+    // flags
+    0xf6,
+    // keep-alive
+    0x00, 0x1e,
+    // client id
+    0x00, 0x05,
+    0x68, 0x65, 0x6c, 0x6c, 0x6f,
+    // will topic
+    0x00, 0x06,
+    0x73, 0x68, 0x6f, 0x75, 0x74, 0x73,
+    // will message
+    0x00, 0x16,
+    0x59, 0x4f, 0x20, 0x57, 0x48, 0x41, 0x54, 0x27, 0x53, 0x20, 0x55, 0x50, 0x20, 0x4d, 0x59, 0x20, 0x48, 0x4f, 0x4d, 0x49, 0x45, 0x53,
+    // username
+    0x00, 0x07,
+    0x74, 0x68, 0x65, 0x75, 0x73, 0x65, 0x72,
+    // password (md5)
+    0x00, 0x20,
+    0x62, 0x61, 0x33, 0x63, 0x38, 0x33, 0x33, 0x34, 0x38, 0x62, 0x64, 0x64, 0x66, 0x37, 0x62, 0x33, 0x36, 0x38, 0x62, 0x34, 0x37, 0x38, 0x61, 0x63, 0x30, 0x36, 0x64, 0x33, 0x33, 0x34, 0x30, 0x65,
+	  };
+
+	mqtt_parser_init(&parser);
+	mqtt_serialiser_init(&serialiser);
+	mqtt_message_init(&message);
+	mqtt_message_dump_k25(&message,io);
+	//mqtt_message_dump(&message);
+}
+
 static uint8_t MQTT_PrintHelp(const CLS1_StdIOType *io) {
   CLS1_SendHelpStr("MQTT", "MQTT commands\r\n", io->stdOut);
   CLS1_SendHelpStr("  help|status", "Print help or status information\r\n", io->stdOut);
@@ -375,6 +424,7 @@ uint8_t MQTT_ParseCommand(const unsigned char *cmd, bool *handled, const CLS1_St
     res = MQTT_PrintHelp(io);
   } else if (UTIL1_strcmp((char*)cmd, "MQTT test")==0) {
     *handled = TRUE;
+    MQTT_test(io);
     CLS1_SendStr("Test réalisé\r\n", io->stdErr);
   }
  return res;

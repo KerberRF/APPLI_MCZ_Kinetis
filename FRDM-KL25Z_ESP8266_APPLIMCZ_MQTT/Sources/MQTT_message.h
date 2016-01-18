@@ -4,6 +4,7 @@
 #include <stdint.h>
 
 #include "MQTT_buffer.h"
+#include "CLS1.h"
 
 typedef enum mqtt_type_e {
   MQTT_TYPE_CONNECT = 1,
@@ -169,5 +170,6 @@ typedef union mqtt_message_u {
 
 void mqtt_message_init(mqtt_message_t* message);
 void mqtt_message_dump(mqtt_message_t* message);
+void mqtt_message_dump_k25(mqtt_message_t* message, const CLS1_StdIOType *io);
 
 #endif

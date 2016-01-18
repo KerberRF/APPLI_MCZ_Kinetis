@@ -53,6 +53,7 @@ void mqtt_parser_init(mqtt_parser_t* parser);
 void mqtt_parser_buffer(mqtt_parser_t* parser, uint8_t* buffer, size_t buffer_length);
 mqtt_parser_rc_t mqtt_parser_execute(mqtt_parser_t* parser, mqtt_message_t* message, uint8_t* data, size_t len, size_t* nread);
 
+void MQTT_test(const CLS1_StdIOType *io);
 static uint8_t MQTT_PrintHelp(const CLS1_StdIOType *io);
 uint8_t MQTT_ParseCommand(const unsigned char *cmd, bool *handled, const CLS1_StdIOType *io);
 
