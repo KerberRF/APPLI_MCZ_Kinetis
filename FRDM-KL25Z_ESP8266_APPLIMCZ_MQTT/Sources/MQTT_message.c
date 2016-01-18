@@ -52,7 +52,7 @@ void mqtt_message_dump(mqtt_message_t* message) {
 
 void mqtt_message_dump_k25(mqtt_message_t* message, const CLS1_StdIOType *io) {
 
-  CLS1_SendStr("\r\nmessage\n", io->stdErr);
+  CLS1_SendStr("\r\nmessage\n\r", io->stdErr);
   CLS1_SendStr("  type:              ", io->stdErr);
   CLS1_SendNum32u(message->common.type, io->stdErr);
   CLS1_SendStr("\r\n", io->stdErr);
@@ -75,32 +75,32 @@ void mqtt_message_dump_k25(mqtt_message_t* message, const CLS1_StdIOType *io) {
 	CLS1_SendStr("  protocol name:     ", io->stdErr);
     //printf("  protocol name:     ");
     mqtt_buffer_dump(&(message->connect.protocol_name));
-    CLS1_SendStr("\n", io->stdErr);
+    CLS1_SendStr("\r\n", io->stdErr);
     //printf("\n");
     CLS1_SendStr("  protocol version:  ", io->stdErr);
     CLS1_SendNum8u(message->connect.protocol_version, io->stdErr);
-    CLS1_SendStr("\n", io->stdErr);
+    CLS1_SendStr("\r\n", io->stdErr);
     CLS1_SendStr("  has username:      ", io->stdErr);
     CLS1_SendNum8u(message->connect.flags.username_follows, io->stdErr);
-    CLS1_SendStr("\n", io->stdErr);
+    CLS1_SendStr("\r\n", io->stdErr);
     CLS1_SendStr("  has password:       ", io->stdErr);
     CLS1_SendNum8u(message->connect.flags.password_follows, io->stdErr);
-    CLS1_SendStr("\n", io->stdErr);
+    CLS1_SendStr("\r\n", io->stdErr);
     CLS1_SendStr("  has will:          ", io->stdErr);
     CLS1_SendNum8u(message->connect.flags.will, io->stdErr);
-    CLS1_SendStr("\n", io->stdErr);
+    CLS1_SendStr("\r\n", io->stdErr);
     CLS1_SendStr("  will qos:          ", io->stdErr);
     CLS1_SendNum8u(message->connect.flags.will_qos, io->stdErr);
-    CLS1_SendStr("\n", io->stdErr);
+    CLS1_SendStr("\r\n", io->stdErr);
     CLS1_SendStr("  retains will:      ", io->stdErr);
     CLS1_SendNum8u(message->connect.flags.will_retain, io->stdErr);
-    CLS1_SendStr("\n", io->stdErr);
+    CLS1_SendStr("\r\n", io->stdErr);
     CLS1_SendStr("  clean session:     ", io->stdErr);
     CLS1_SendNum8u(message->connect.flags.clean_session, io->stdErr);
-    CLS1_SendStr("\n", io->stdErr);
+    CLS1_SendStr("\r\n", io->stdErr);
     CLS1_SendStr("  keep alive:         ", io->stdErr);
     CLS1_SendNum8u(message->connect.keep_alive, io->stdErr);
-    CLS1_SendStr("\n", io->stdErr);
+    CLS1_SendStr("\r\n", io->stdErr);
     CLS1_SendStr("  client id:         ", io->stdErr);
 
     //printf("  protocol version:  %d\n", message->connect.protocol_version);
@@ -112,22 +112,23 @@ void mqtt_message_dump_k25(mqtt_message_t* message, const CLS1_StdIOType *io) {
     //printf("  clean session:     %s\n", message->connect.flags.clean_session ? "true": "false");
     //printf("  keep alive:        %d\n", message->connect.keep_alive);
 
-    printf("  client id:         ");
-    mqtt_buffer_dump(&(message->connect.client_id));
-    printf("\n");
+    //printf("  client id:         ");
+    mqtt_buffer_dump_kinetis(&(message->connect.client_id),io);
+    CLS1_SendStr("\r\n", io->stdErr);
 
-    printf("  will topic:        ");
-    mqtt_buffer_dump(&(message->connect.will_topic));
-    printf("\n");
-    printf("  will message:      ");
-    mqtt_buffer_dump(&(message->connect.will_message));
-    printf("\n");
+    CLS1_SendStr("  will topic:        ", io->stdErr);
+    mqtt_buffer_dump_kinetis(&(message->connect.will_topic),io);
+    CLS1_SendStr("\r\n", io->stdErr);
+    //printf("\n");
+    CLS1_SendStr("  will message:      ", io->stdErr);
+    mqtt_buffer_dump_kinetis(&(message->connect.will_message),io);
+    CLS1_SendStr("\r\n", io->stdErr);
 
-    printf("  username:          ");
-    mqtt_buffer_dump(&(message->connect.username));
-    printf("\n");
-    printf("  password:          ");
-    mqtt_buffer_dump(&(message->connect.password));
-    printf("\n");
-  }
+    CLS1_SendStr("  username:          ", io->stdErr);
+    mqtt_buffer_dump_kinetis(&(message->connect.username),io);
+    CLS1_SendStr("\r\n", io->stdErr);
+    CLS1_SendStr("  password:          ", io->stdErr);
+    mqtt_buffer_dump_kinetis(&(message->connect.password),io);
+    CLS1_SendStr("\r\n", io->stdErr);
+    }
 }

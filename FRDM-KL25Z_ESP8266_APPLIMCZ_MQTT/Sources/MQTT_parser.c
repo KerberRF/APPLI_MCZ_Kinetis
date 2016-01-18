@@ -1,5 +1,7 @@
+#include <stdio.h>
 #include <stdint.h>
 #include <stddef.h>
+#include <stdlib.h>
 #include <string.h>
 #include <math.h>
 
@@ -403,8 +405,55 @@ uint8_t data[] = {
 	mqtt_parser_init(&parser);
 	mqtt_serialiser_init(&serialiser);
 	mqtt_message_init(&message);
-	mqtt_message_dump_k25(&message,io);
-	//mqtt_message_dump(&message);
+
+ size_t nread = 0;
+ int rc = 0, loops = 0;
+
+	  printf("parser running (%zu bytes)\n", sizeof data);
+	  do {
+	    printf("  loop %d\n", ++loops);
+	    printf("    state: %d\n", parser.state);
+	    printf("    offset: %zu\n", nread);
+	    rc = mqtt_parser_execute(&parser, &message, data, sizeof data, &nread);
+	    printf("    rc: %d\n", rc);
+
+	    if (rc == MQTT_PARSER_RC_WANT_MEMORY) {
+	      printf("    bytes requested: %zu\n", parser.buffer_length);
+	      mqtt_parser_buffer(&parser, malloc(parser.buffer_length), parser.buffer_length);
+	    }
+	  } while (rc == MQTT_PARSER_RC_CONTINUE || rc == MQTT_PARSER_RC_WANT_MEMORY);
+
+	  printf("\n");
+	  printf("parser info\n");
+	  printf("  state: %d\n", parser.state);
+	  if (rc == MQTT_PARSER_RC_ERROR) {
+	    printf("  error: %s\n", mqtt_error_string(parser.error));
+	  }
+	  printf("  nread: %zd\n", nread);
+	  printf("  loops: %d\n", loops);
+	  printf("\n");
+
+	  //mqtt_message_dump(&message);
+	  mqtt_message_dump_k25(&message,io);
+
+	  printf("\n");
+
+	  size_t packet_length = mqtt_serialiser_size(&serialiser, &message);
+	  uint8_t* packet = malloc(packet_length);
+	  mqtt_serialiser_write(&serialiser, &message, packet, packet_length);
+
+	  printf("packet length: %zu\n", packet_length);
+	  printf("packet data:   ");
+	  for (int i=0;i<packet_length;++i) {
+	    printf("%02x ", packet[i]);
+	  }
+	  printf("\n");
+
+	  printf("\n");
+	  printf("difference: %d\n", memcmp(data, packet, packet_length));
+
+	  //return 0;
+
 }
 
 static uint8_t MQTT_PrintHelp(const CLS1_StdIOType *io) {
