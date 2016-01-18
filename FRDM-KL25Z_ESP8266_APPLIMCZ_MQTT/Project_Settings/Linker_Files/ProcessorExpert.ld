@@ -4,13 +4,13 @@
 /*##                                   */
 /*##     Filename  : ProcessorExpert.ld */
 /*##                                   */
-/*##     Project   : FRDM-KL25Z_ESP8266_APPLIMCZ */
+/*##     Project   : FRDM-KL25Z_ESP8266_APPLIMCZ_MQTT */
 /*##                                   */
 /*##     Processor : MKL25Z128VLK4     */
 /*##                                   */
 /*##     Compiler  : GNU C Compiler    */
 /*##                                   */
-/*##     Date/Time : 2016-01-14, 14:32, # CodeGen: 0 */
+/*##     Date/Time : 2016-01-18, 10:03, # CodeGen: 0 */
 /*##                                   */
 /*##     Abstract  :                   */
 /*##                                   */

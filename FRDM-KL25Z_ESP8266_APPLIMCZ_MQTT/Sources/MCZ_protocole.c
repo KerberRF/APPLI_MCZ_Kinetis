@@ -422,6 +422,24 @@ uint8_t MCZ_ParseCommand(const unsigned char *cmd, bool *handled, const CLS1_Std
     CLS1_SendStr("Modification de la vitesse du ventilateur 2 à ", io->stdErr);
     CLS1_SendNum32u(Util_config.Ventilateur2, io->stdErr);
     CLS1_SendStr("\r\n", io->stdErr);
+  } else if (UTIL1_strcmp((char*)cmd, "MCZ status")==0) {
+	*handled = TRUE;
+	MCZ_send_Cmd(io);
+	CLS1_SendStr("\r\nEtat de fonctionnement:", io->stdErr);
+	if (Util_config.Modes == 1)
+	{
+		CLS1_SendStr("ON\r\n", io->stdErr);
+	}
+	else CLS1_SendStr("OFF\r\n", io->stdErr);
+	CLS1_SendStr("Puissance de chauffe:", io->stdErr);
+	CLS1_SendNum32u(Util_config.Puissance, io->stdErr);
+	CLS1_SendStr("\r\n", io->stdErr);
+	CLS1_SendStr("Ventilateur 1:", io->stdErr);
+	CLS1_SendNum32u(Util_config.Ventilateur1, io->stdErr);
+	CLS1_SendStr("\r\n", io->stdErr);
+	CLS1_SendStr("Ventilateur 2:", io->stdErr);
+	CLS1_SendNum32u(Util_config.Ventilateur2, io->stdErr);
+	CLS1_SendStr("\r\n", io->stdErr);
   }
  return res;
 }

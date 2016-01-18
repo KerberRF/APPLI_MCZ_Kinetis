@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <PEproject>
   <Header>
-    <Name>FRDM-KL25Z_ESP8266_APPLIMCZ</Name>
+    <Name>FRDM-KL25Z_ESP8266_APPLIMCZ_MQTT</Name>
     <SavedBy>tastyger</SavedBy>
     <ModificationStamp>39</ModificationStamp>
     <Date>2014-12-01</Date>
@@ -29,7 +29,7 @@
     <UseExistingModules>true</UseExistingModules>
     <RenamePeripheries>false</RenamePeripheries>
     <Autodependency>true</Autodependency>
-    <ProjectCompNumb>80</ProjectCompNumb>
+    <ProjectCompNumb>81</ProjectCompNumb>
     <DelUnusedPreviouslyGenFiles>true</DelUnusedPreviouslyGenFiles>
     <GeneratedCodeFrozen>false</GeneratedCodeFrozen>
     <AssignInitComponentNameToPrph>true</AssignInitComponentNameToPrph>

@@ -9,6 +9,7 @@
 #include "ESP8266.h"
 #include "LEDR.h"
 #include "MCZ_protocole.h"
+#include "MQTT_parser.h"
 
 /* table with shell parser/handler */
 static const CLS1_ParseCommandCallback CmdParserTable[] =
@@ -19,6 +20,7 @@ static const CLS1_ParseCommandCallback CmdParserTable[] =
 #endif
   MCZ_ParseCommand,
   ESP_ParseCommand,
+  MQTT_ParseCommand,
   NULL /* sentinel */
 };
 
