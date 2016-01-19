@@ -3,7 +3,7 @@
   <Header>
     <Name>FRDM-KL25Z_ESP8266_APPLIMCZ_MQTT</Name>
     <SavedBy>tastyger</SavedBy>
-    <ModificationStamp>39</ModificationStamp>
+    <ModificationStamp>46</ModificationStamp>
     <Date>2014-12-01</Date>
     <IDE>Eclipse IDE</IDE>
     <PEversion>1.12.2.RT7_b1550-0615</PEversion>
@@ -29,7 +29,7 @@
     <UseExistingModules>true</UseExistingModules>
     <RenamePeripheries>false</RenamePeripheries>
     <Autodependency>true</Autodependency>
-    <ProjectCompNumb>82</ProjectCompNumb>
+    <ProjectCompNumb>108</ProjectCompNumb>
     <DelUnusedPreviouslyGenFiles>true</DelUnusedPreviouslyGenFiles>
     <GeneratedCodeFrozen>false</GeneratedCodeFrozen>
     <AssignInitComponentNameToPrph>true</AssignInitComponentNameToPrph>
@@ -44,7 +44,7 @@
   <UserFolder>
     <UserFolderName />
     <NodeName>Referenced_Components</NodeName>
-    <CompNumb>60</CompNumb>
+    <CompNumb>106</CompNumb>
     <FolderType>Beans</FolderType>
     <ExpandedAll>true</ExpandedAll>
   </UserFolder>
@@ -4471,17 +4471,17 @@
       <Value5>true</Value5>
       <ItemId6>34</ItemId6>
       <Value6>true</Value6>
-      <ItemId7>59</ItemId7>
+      <ItemId7>6</ItemId7>
       <Value7>true</Value7>
-      <ItemId8>6</ItemId8>
+      <ItemId8>7</ItemId8>
       <Value8>true</Value8>
-      <ItemId9>7</ItemId9>
+      <ItemId9>10</ItemId9>
       <Value9>true</Value9>
-      <ItemId10>10</ItemId10>
+      <ItemId10>61</ItemId10>
       <Value10>true</Value10>
-      <ItemId11>61</ItemId11>
+      <ItemId11>67</ItemId11>
       <Value11>true</Value11>
-      <ItemId12>67</ItemId12>
+      <ItemId12>105</ItemId12>
       <Value12>true</Value12>
     </BoolList_BeanConfig>
     <BoolList_TaskConfig>
@@ -14810,31 +14810,6 @@
     <Events />
   </Bean>
   <Bean>
-    <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
-    <BeanType>KinetisSDK</BeanType>
-    <Name>KSDK1</Name>
-    <CompNumb>59</CompNumb>
-    <CompEnabled>true</CompEnabled>
-    <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
-    <IconName>SHARED_LDD</IconName>
-    <UserFolderName>Referenced_Components</UserFolderName>
-    <Comment lines_count="0" />
-    <Template />
-    <BeanVersion>01.001</BeanVersion>
-    <LightErrorsIgnored>false</LightErrorsIgnored>
-    <Properties>
-      <ItemState>
-        <ItemSymbol>DeviceName</ItemSymbol>
-        <ReadOnly>false</ReadOnly>
-        <UserReadOnly>false</UserReadOnly>
-        <Value>KSDK1</Value>
-        <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
-      </ItemState>
-    </Properties>
-    <Methods />
-    <Events />
-  </Bean>
-  <Bean>
     <BeanType>Wait</BeanType>
     <Name>WAIT1</Name>
     <CompNumb>6</CompNumb>
@@ -16262,6 +16237,31 @@
         <Value>CLS1_OnAfterIterateCmd</Value>
       </ItemState>
     </Events>
+  </Bean>
+  <Bean>
+    <Repository>file:/${home_ProcessorExpert_loc}/MyComponents</Repository>
+    <BeanType>KinetisSDK</BeanType>
+    <Name>KSDK1</Name>
+    <CompNumb>105</CompNumb>
+    <CompEnabled>true</CompEnabled>
+    <GenCodeMode>ALWAYS_WRITE</GenCodeMode>
+    <IconName>SHARED_LDD</IconName>
+    <UserFolderName>Referenced_Components</UserFolderName>
+    <Comment lines_count="0" />
+    <Template />
+    <BeanVersion>01.001</BeanVersion>
+    <LightErrorsIgnored>false</LightErrorsIgnored>
+    <Properties>
+      <ItemState>
+        <ItemSymbol>DeviceName</ItemSymbol>
+        <ReadOnly>false</ReadOnly>
+        <UserReadOnly>false</UserReadOnly>
+        <Value>KSDK1</Value>
+        <ItemWasNeverEnabledInChgScript>true</ItemWasNeverEnabledInChgScript>
+      </ItemState>
+    </Properties>
+    <Methods />
+    <Events />
   </Bean>
   <ComponentInitializationSequence>
     <EmptySection_DummyValue />

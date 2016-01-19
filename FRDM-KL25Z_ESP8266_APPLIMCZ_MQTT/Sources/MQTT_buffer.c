@@ -24,9 +24,8 @@ void mqtt_buffer_dump(mqtt_buffer_t* buffer) {
 void mqtt_buffer_dump_kinetis(mqtt_buffer_t* buffer, const CLS1_StdIOType *io) {
 
 	CLS1_SendStr("[", io->stdErr);
-	CLS1_SendNum8u(buffer->length, io->stdErr);
+	CLS1_SendNum32u(buffer->length, io->stdErr);
 	CLS1_SendStr("] ", io->stdErr);
-	//printf("[%d] ", buffer->length);
 
   char hex = 0;
   for (int i=0;i<buffer->length;++i) {
